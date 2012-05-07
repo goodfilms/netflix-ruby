@@ -8,17 +8,22 @@ module Netflix
       @oauth_consumer = oauth_consumer
     end
 
-    def index
+    # This will download a full index of every title available for instant
+    # streaming into a huge XML file. I don't really recommend running it.
+    def download_index(file_path)
       request = @oauth_consumer.create_signed_request :get,
-                                               '/catalog/titles/index',
-                                               nil,
-                                               max_results: 25
+                                               'http://api.netflix.com/catalog/titles/index'
 
-      @oauth_consumer.http.request(request) do |response|
-        response.read_body do |chunk|
-          puts chunk
+      
+
+      File.open(file_path, 'w') do |file|
+        @oauth_consumer.http.request(request) do |response|
+           response.read_body do |chunk|
+             file.write(chunk)
+           end
         end
       end
     end
+
   end
 end
