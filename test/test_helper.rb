@@ -27,4 +27,12 @@ class Test::Unit::TestCase
                          :body => @netflix_queue_responses[netflix_user_id]['delete']['body'])
 
   end
+
+  def stub_netflix_public_api
+    FakeWeb.allow_net_connect = false
+    
+    # http://api.netflix.com/catalog/titles/index
+    FakeWeb.register_uri(:get, 'http://api.netflix.com/catalog/titles/index',
+                         :body => '')
+  end
 end
