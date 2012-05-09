@@ -8,7 +8,8 @@ module Netflix
     
     #attr_accessor :oauth_consumer, :oauth_access_token
     
-    def initialize(user_access_token=nil, user_access_secret=nil)
+    def initialize(user_access_token = nil, user_access_secret = nil)
+
       @oauth_consumer = OAuth::Consumer.new(Client.consumer_key, Client.consumer_secret,
         :site => "http://api.netflix.com", 
         :request_token_url => "http://api.netflix.com/oauth/request_token", 
@@ -29,6 +30,10 @@ module Netflix
       else
         raise "Must instantiate client with user auth token/secret"
       end
+    end
+
+    def catalog
+      @catalog ||= Catalog.new(@oauth_consumer)
     end
     
     #launches the Netflix OAuth page, and asks for the pin
