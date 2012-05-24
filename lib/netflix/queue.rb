@@ -34,14 +34,15 @@ module Netflix
     
     def remove(position)
       id = discs[position-1].id
-      #response = @oauth_access_token.delete "/users/#{@user_id}/queues/#{@type}/available/#{position}?output=json" , {'etag' => etag}
       response = @oauth_access_token.delete "#{id}?output=json"
       @map = retrieve
       self
     end
     
     def remove_by_title_ref(title_ref)
-      disc = discs.find {|disc| disc =~ /\/#{title_ref}\//}
+      disc = discs.find {|disc| disc.movie_id == title_ref}
+      raise "Film #{title_ref} is not currently enqueued" unless disc
+
       response = @oauth_access_token.delete "#{disc.id}?output=json"
       @map = retrieve
       self
