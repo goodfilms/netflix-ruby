@@ -5,10 +5,20 @@ module Netflix
   
     MAX_RESULTS = 500
 
+    define_getter :etag, :rental_history_item
+
     def initialize(oauth_access_token, user_id)
       @oauth_access_token = oauth_access_token
       @user_id = user_id
       super(retrieve)
+    end
+
+    def discs
+      if rental_history_item
+        rental_history_item.map { |history_item| Disc.new(history_item) }
+      else
+        []
+      end
     end
 
   private
