@@ -8,7 +8,14 @@ This gem uses Netflix's OAuth REST API, you first need to register an applicatio
 This will provide you with a "consumer key", "consumer secret", and "application name"
 
 === To use unauthenticated features (catalog search):
-* TODO
+* You can download the full XML catalog if you like. It's quite large and takes a while.
+  1. Do this code
+
+    client = Netflix::Client.new
+    catalog = client.catalog
+    catalog.download_index("path_to_giant_xml_file.xml")
+
+  2. Wait.
 
 === To use authenticated features (i.e. queue management):
 * Set the consumer/developer config:
@@ -49,5 +56,5 @@ This will provide you with a "consumer key", "consumer secret", and "application
 === Credits
 This work is based on: REST API documentation of Netflix (http://developer.netflix.com),
 with some help from twitter gem for OAuth ideas https://github.com/jnunemaker/twitter/
-  
-  
+
+Some extra work from the [Goodfilms](http://goodfil.ms) team
