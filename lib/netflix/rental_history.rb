@@ -15,7 +15,13 @@ module Netflix
 
     def discs
       if rental_history_item
-        rental_history_item.map { |history_item| Disc.new(history_item) }
+        # Sometime netflix will give us back an empty
+        # string instead of a proper entry
+        rental_history_item.select { |history_item|
+            history_item.is_a?(Hash)
+          }.map { |history_item| 
+            Disc.new(history_item) 
+          }
       else
         []
       end
