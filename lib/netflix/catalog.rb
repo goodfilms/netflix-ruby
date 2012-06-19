@@ -26,7 +26,7 @@ module Netflix
                                    nil,     # oauth token
                                    {},      # body (for post/put)
                                    request_options
-      
+      @oauth_consumer.http.read_timeout = 240
       @oauth_consumer.http.request(request) do |response|
         if response.is_a?(Net::HTTPSuccess)
           file_open_mode = response.header['Content-Encoding'] == 'gzip' ? 'wb' : 'w'
