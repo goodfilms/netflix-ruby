@@ -35,7 +35,7 @@ module Netflix
             response.read_body(file)
           end
         else
-          raise CatalogDownloadError.new("#{response.class} - #{response.code} - #{respone.message}")
+          raise CatalogDownloadError.new("#{response.class} - #{response.code} - #{response.message}")
         end
       end
     end
