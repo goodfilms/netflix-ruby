@@ -18,11 +18,7 @@ module Netflix
       @instant_queue ||= Queue.new(@oauth_access_token, user_id, Queue::TYPE_INSTANT)
     end
 
-    def rental_history
-      @rental_history ||= RentalHistory.new(@oauth_access_token, user_id)
-    end
-    
-    private
+  private
     def retrieve
       response = @oauth_access_token.get "/users/#{@user_id}?output=json"
       JSON.parse(response.body)["user"]
