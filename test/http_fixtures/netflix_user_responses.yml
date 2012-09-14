@@ -12,11 +12,6 @@ nuid_one:
             "title": "queues"
           },
           {
-            "href": "http://api.netflix.com/users/nuid_one/rental_history",
-            "rel": "http://schemas.netflix.com/rental_history",
-            "title": "rental history"
-          },
-          {
             "href": "http://api.netflix.com/users/nuid_one/recommendations",
             "rel": "http://schemas.netflix.com/recommendations",
             "title": "recommendations"
@@ -35,11 +30,6 @@ nuid_one:
             "href": "http://api.netflix.com/users/nuid_one/reviews",
             "rel": "http://schemas.netflix.com/reviews",
             "title": "reviews"
-          },
-          {
-            "href": "http://api.netflix.com/users/nuid_one/at_home",
-            "rel": "http://schemas.netflix.com/at_home",
-            "title": "at home"
           },
           {
             "href": "http://api.netflix.com/users/nuid_one/feeds",
@@ -82,11 +72,6 @@ nuid_sub1:
             "title": "queues"
           },
           {
-            "href": "http://api.netflix.com/users/nuid_sub1/rental_history",
-            "rel": "http://schemas.netflix.com/rental_history",
-            "title": "rental history"
-          },
-          {
             "href": "http://api.netflix.com/users/nuid_sub1/recommendations",
             "rel": "http://schemas.netflix.com/recommendations",
             "title": "recommendations"
@@ -105,11 +90,6 @@ nuid_sub1:
             "href": "http://api.netflix.com/users/nuid_sub1/reviews",
             "rel": "http://schemas.netflix.com/reviews",
             "title": "reviews"
-          },
-          {
-            "href": "http://api.netflix.com/users/nuid_sub1/at_home",
-            "rel": "http://schemas.netflix.com/at_home",
-            "title": "at home"
           },
           {
             "href": "http://api.netflix.com/users/nuid_sub1/feeds",
@@ -151,11 +131,6 @@ nuid_sub2:
             "title": "queues"
           },
           {
-            "href": "http://api.netflix.com/users/nuid_sub2/rental_history",
-            "rel": "http://schemas.netflix.com/rental_history",
-            "title": "rental history"
-          },
-          {
             "href": "http://api.netflix.com/users/nuid_sub2/recommendations",
             "rel": "http://schemas.netflix.com/recommendations",
             "title": "recommendations"
@@ -174,11 +149,6 @@ nuid_sub2:
             "href": "http://api.netflix.com/users/nuid_sub2/reviews",
             "rel": "http://schemas.netflix.com/reviews",
             "title": "reviews"
-          },
-          {
-            "href": "http://api.netflix.com/users/nuid_sub2/at_home",
-            "rel": "http://schemas.netflix.com/at_home",
-            "title": "at home"
           },
           {
             "href": "http://api.netflix.com/users/nuid_sub2/feeds",
@@ -220,11 +190,6 @@ empty_queue:
             "title": "queues"
           },
           {
-            "href": "http://api.netflix.com/users/empty_queue/rental_history",
-            "rel": "http://schemas.netflix.com/rental_history",
-            "title": "rental history"
-          },
-          {
             "href": "http://api.netflix.com/users/empty_queue/recommendations",
             "rel": "http://schemas.netflix.com/recommendations",
             "title": "recommendations"
@@ -243,11 +208,6 @@ empty_queue:
             "href": "http://api.netflix.com/users/empty_queue/reviews",
             "rel": "http://schemas.netflix.com/reviews",
             "title": "reviews"
-          },
-          {
-            "href": "http://api.netflix.com/users/empty_queue/at_home",
-            "rel": "http://schemas.netflix.com/at_home",
-            "title": "at home"
           },
           {
             "href": "http://api.netflix.com/users/empty_queue/feeds",
