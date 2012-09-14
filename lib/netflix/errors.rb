@@ -7,7 +7,7 @@ module Netflix
         @body = body
         @headers = headers
         body_obj = JSON.parse(body)
-        message = body_obj["status"]["message"]
+        message = "#{body_obj['status_code']} - #{body_obj['status']['message']}"
         super(message)
       end
     end
