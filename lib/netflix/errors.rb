@@ -3,44 +3,65 @@ require 'json'
 module Netflix
   module Error
     class ResponseError < StandardError
-      def initialize(body, headers)
-        @body = body
-        @headers = headers
-        body_obj = JSON.parse(body)
-        message = "#{body_obj['status_code']} - #{body_obj['status']['message']}"
+      # standard stuff we get off the http response
+      attr_accessor :http_status_code, :http_headers, :response_body
+
+      # custom netflix stuff
+      attr_accessor :netflix_status_code, :netflix_sub_code, :netflix_message
+
+      def initialize(code, body, headers)
+        self.http_status_code = code
+        self.response_body = body
+        self.http_headers = headers
+
+        status_hash = JSON.parse(response_body)['status']
+
+        self.netflix_status_code = status_hash['status_code']
+        self.netflix_sub_code = status_hash['sub_code']
+        self.netflix_message = status_hash['message']
+
+        message = "#{http_status_code}/#{netflix_sub_code || 'unknown'} - #{netflix_message}"
+
         super(message)
       end
     end
-    #4xx level errors
-    class ClientError < ResponseError
-    end
-    #5xx level errors
-    class ServerError < ResponseError
-    end
-    #400
-    class BadRequest < ClientError
-    end
-    #403
-    class Forbidden < ClientError
-    end
-    #404
-    class NotFound < ClientError
-    end
-    #401
-    class Unauthorized < ClientError
-    end
-    #420 (?)
-    class RateLimit < ClientError
-    end
 
-    # Queue Errors
-    
-    CODEMAP = {400 => BadRequest, 403 => Forbidden, 404 => NotFound, 401 => Unauthorized, 420 => RateLimit}
+    #4xx level errors
+    class ClientError < ResponseError; end
+    #5xx level errors
+    class ServerError < ResponseError; end
+    #400
+    class BadRequest < ClientError; end
+    #403
+    class Forbidden < ClientError; end
+    #404
+    class NotFound < ClientError; end
+    #401
+    class Unauthorized < ClientError; end
+    #420 (?)
+    class RateLimit < ClientError; end
+
     def self.for(response)
-      #codemap = {400 => BadRequest, 403 => Forbidden, 404 => NotFound, 401 => Unauthorized, 420 => RateLimit}
       code = response.code.to_i
-      (CODEMAP[code] || ResponseError).new(response.body, response.header)
-      #codemap[code].new(response.body, response.header)
+
+      error_class = case code
+                    when 400
+                      BadRequest
+                    when 403
+                      Forbidden
+                    when 404
+                      NotFound
+                    when 401
+                      Unauthorized
+                    when 420
+                      RateLimit
+                    when 400..499
+                      ClientError
+                    else
+                      ResponseError
+                    end
+
+      error_class.new(code, response.body, response.header)
     end
   end
 end
