@@ -23,5 +23,14 @@ class ErrorTest < Test::Unit::TestCase
     end
 
   end
+
+  def test_internal_error
+  end
+
+  def test_already_added_to_queue
+  end
+
+  def test_filter_threw_exception
+  end
 end
   
