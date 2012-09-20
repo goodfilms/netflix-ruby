@@ -14,11 +14,8 @@ class NonUserClientTest < Test::Unit::TestCase
     end
   end
 
-  def test_catalog_index
-    puts "YOUR FACE"
-    client = Netflix::Client.new
-    catalog = client.catalog
-
-    assert_equal(catalog.index, ['Some Movie'])
+  def test_catalog_download
+    # TODO
+    
   end
 end

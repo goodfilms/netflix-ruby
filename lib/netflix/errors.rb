@@ -32,6 +32,8 @@ module Netflix
     #420 (?)
     class RateLimit < ClientError
     end
+
+    # Queue Errors
     
     CODEMAP = {400 => BadRequest, 403 => Forbidden, 404 => NotFound, 401 => Unauthorized, 420 => RateLimit}
     def self.for(response)
