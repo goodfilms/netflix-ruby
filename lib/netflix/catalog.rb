@@ -20,14 +20,16 @@ module Netflix
     #   * file_path (String)
     #   * gzipped (boolean - if you want to download it gzipped)
     #
-    def download_streaming_index(file_path, gzipped = true)
+    def download_streaming_index(file_path, gzipped, user_access_token, user_access_secret)
       self.local_file_path = file_path
       self.request_options = { 'User-Agent' => 'Netflix Ruby - https://github.com/goodfilms/netflix-ruby' }
       self.request_options.merge!({'Accept-Encoding' => 'gzip'}) if gzipped
 
+      oauth_token = OAuth::AccessToken.new(@oauth_consumer, user_access_token, user_access_secret)
+
       request = @oauth_consumer.create_signed_request :get,
                                    'http://api-public.netflix.com/catalog/titles/streaming',
-                                   nil,     # oauth token
+                                   oauth_token,     # oauth token
                                    {},      # body (for post/put)
                                    request_options
       http_client = @oauth_consumer.http
